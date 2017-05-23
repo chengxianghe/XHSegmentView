@@ -1,7 +1,7 @@
 # XHSegmentView
 
 - 项目使用 ARC 和 CocoaPods 
-- iOS 8.0
+- iOS 7.0
 - swift 3.0
 - 支持 IB_DESIGNABLE，IBInspectable
 
