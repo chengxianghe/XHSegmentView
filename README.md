@@ -13,3 +13,6 @@
 ## Screenshots
 
 <img src="https://github.com/chengxianghe/watch-gif/blob/master/XHSegmentView/WX20170523-113002.png?raw=true" width = "400" alt="预览图"/>
+
+<img src="https://github.com/chengxianghe/watch-gif/blob/master/XHSegmentView/WX20170523-113724.png?raw=true" width = "400" alt="预览图"/>
+
