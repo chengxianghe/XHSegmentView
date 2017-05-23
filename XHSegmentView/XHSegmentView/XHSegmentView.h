@@ -27,8 +27,8 @@ IB_DESIGNABLE
 @property (nonatomic, assign) IBInspectable CGFloat borderWidth;              ///<边框宽度
 @property (nonatomic, assign) IBInspectable CGFloat titleFontSize;            ///<标题的字号
 
-@property (nonatomic, strong) NSArray *titles;                  //标题数组
-@property (nonatomic, strong) UIFont  *titleFont;               //标题的字体
+@property (nonatomic, strong) NSArray *titles;                  ///<标题数组
+@property (nonatomic, strong) UIFont  *titleFont;               ///<标题的字体
 
 
 /**
@@ -37,7 +37,6 @@ IB_DESIGNABLE
  @param block 回调 isCode 是否是代码触发
  */
 - (void)setSegmentClickBlock:(XHSegmentViewClickBlock)block;
-
 
 /**
  自定义切换选项的动画
@@ -54,9 +53,9 @@ IB_DESIGNABLE
  手动选择
  
  @param index 选中的index
+ @param animated 显示动画
  */
-- (void)setSelectedIndex:(NSInteger)index;
-
+- (void)setSelectedIndex:(NSInteger)index animated:(BOOL)animated;
 
 /**
  返回当前选中的index

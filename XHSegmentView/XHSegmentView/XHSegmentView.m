@@ -14,9 +14,9 @@
 @property (nonatomic, assign) CGFloat viewHeight;                   //组件的高度
 @property (nonatomic, assign) CGFloat labelWidth;                   //Label的宽度
 
-@property (nonatomic, strong) UIView * heightLightView;
-@property (nonatomic, strong) UIView * heightTopView;
-@property (nonatomic, strong) UIView * bottomNormalView;
+@property (nonatomic,   weak) UIView *heightLightView;
+@property (nonatomic,   weak) UIView *heightTopView;
+@property (nonatomic,   weak) UIView *bottomNormalView;
 
 @property (nonatomic, strong) NSMutableArray * labelMutableArray;
 @property (nonatomic,   copy) XHSegmentViewClickBlock clickBlock;
@@ -30,8 +30,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _duration = 0.2;
-        _titlesCount = 3;
+        [self defaultConfig];
     }
     return self;
 }
@@ -40,33 +39,32 @@
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     if (self) {
-        _duration = 0.2;
-        _titlesCount = 3;
+        [self defaultConfig];
     }
     return self;
 }
 
+- (void)defaultConfig {
+    _duration = 0.2;
+    _titles = @[@"Title0", @"Title1", @"Title2"];
+    _titlesCount = _titles.count;
+    _titleNormalColor = [UIColor blackColor];
+    _titleSelectedColor = [UIColor whiteColor];
+    _backgroundNormalColor = [UIColor clearColor];
+    _backgroundSelectedColor = [UIColor cyanColor];
+    _titleFontSize = 14.0;
+    _titleFont = [UIFont systemFontOfSize:_titleFontSize];
+    _labelMutableArray = [[NSMutableArray alloc] initWithCapacity:_titles.count];
+    _labelWidth = _viewWidth / _titles.count;
+}
+
 #pragma mark - layoutSubviews
 
-//#if TARGET_INTERFACE_BUILDER
-// this code will execute only in IB
 - (void)layoutSubviews {
     [super layoutSubviews];
     
     [self xh_layoutSubviews];
 }
-//#else
-//// this code will run in the app itself
-//- (void)awakeFromNib {
-//    [super awakeFromNib];
-//    
-//    if ([self.titles count] <= 0) {
-//        [self setTitlesCount:_titlesCount];
-//    }
-//    [self xh_layoutSubviews];
-//}
-//
-//#endif
 
 - (void)xh_layoutSubviews{
     _viewWidth = super.frame.size.width;
@@ -74,13 +72,45 @@
     
     [self removeAllSubView];
     
-    [self customeData];
-    [self createBottomLabels];
-    [self createTopLables];
-    [self createTopButtons];
+#if TARGET_INTERFACE_BUILDER
+    // this code will execute only in IB
+    if (_titlesCount == 0) {
+        _titlesCount = 3;
+    }
+    if (_titles == nil) {
+        [self createDefaultTitles];
+    }
+    if (_titleNormalColor == nil) {
+        _titleNormalColor = [UIColor blackColor];
+    }
+    if (_titleSelectedColor == nil) {
+        _titleSelectedColor = [UIColor whiteColor];
+    }
+    if (_backgroundNormalColor == nil) {
+        _backgroundNormalColor = [UIColor clearColor];
+    }
+    if (_backgroundSelectedColor == nil) {
+        _backgroundSelectedColor = [UIColor cyanColor];
+    }
+    if (_titleFont == nil) {
+        _titleFont = [UIFont systemFontOfSize:14.0];
+        _titleFontSize = [_titleFont pointSize];
+    }
+    if (_labelMutableArray == nil) {
+        _labelMutableArray = [[NSMutableArray alloc] initWithCapacity:_titles.count];
+    }
+#endif
+    
+    // 更新label宽度
+    if (_titles.count) {
+        _labelWidth = _viewWidth / _titles.count;
+        [self createBottomLabels];
+        [self createTopLables];
+        [self createTopButtons];
+    }
     
     if (_currentTapButton != nil) {
-        [self tapButton:_currentTapButton isCode:YES];
+        [self tapButton:_currentTapButton isCode:YES animated:NO];
     }
 }
 
@@ -117,6 +147,12 @@
     [self layoutSubviews];
 }
 
+- (void)setTitleFont:(UIFont *)titleFont {
+    _titleFont = titleFont;
+    _titleFontSize = [titleFont pointSize];
+    [self layoutSubviews];
+}
+
 - (void)setTitles:(NSArray *)titles {
     _titles = titles;
     _titlesCount = titles.count;
@@ -137,14 +173,13 @@
     }
 }
 
-- (void)setSelectedIndex:(NSInteger)index {
+- (void)setSelectedIndex:(NSInteger)index animated:(BOOL)animated {
     if (index < 0 || index > self.titles.count) {
-        NSLog(@"index out of range of zlsegment");
+        NSLog(@"index out of range of XHSegmentView");
         return;
     }
     UIButton *button = [self viewWithTag:index + 100];
-    NSLog(@"****selected index: %ld", (long)index);
-    [self tapButton:button isCode:YES];
+    [self tapButton:button isCode:YES animated:animated];
 }
 
 - (NSInteger)currentIndex {
@@ -175,66 +210,18 @@
     subView = nil;
 }
 
-/**
- *  提供默认值
- */
-- (void)customeData {
-    if (_titles == nil) {
-        _titlesCount = 3;
-        _titles = @[@"Test0", @"Test1", @"Test2"];
-    }
-    
-    if (_titleNormalColor == nil) {
-        _titleNormalColor = [UIColor blackColor];
-    }
-    
-    if (_titleSelectedColor == nil) {
-        _titleSelectedColor = [UIColor whiteColor];
-    }
-    
-    if (_backgroundNormalColor == nil) {
-        _backgroundNormalColor = [UIColor clearColor];
-    }
-    if (_backgroundSelectedColor == nil) {
-        _backgroundSelectedColor = [UIColor cyanColor];
-    }
-    if (_titleFont == nil) {
-        _titleFont = [UIFont systemFontOfSize:14.0];
-    }
-    
-    if (_labelMutableArray == nil) {
-        _labelMutableArray = [[NSMutableArray alloc] initWithCapacity:_titles.count];
-    }
-    _labelWidth = _viewWidth / _titles.count;
-}
-
 - (void)createDefaultTitles {
     NSMutableArray *titles = [NSMutableArray arrayWithCapacity:_titlesCount];
     for (NSInteger i = 0; i < _titlesCount; i++) {
-        [titles addObject:[NSString stringWithFormat:@"Test%d", (int)i]];
+        [titles addObject:[NSString stringWithFormat:@"Title%d", (int)i]];
     }
     _titles = titles;
 }
 
-/**
- *  计算当前高亮的Frame
- *
- *  @param index 当前点击按钮的Index
- *
- *  @return 返回当前点击按钮的Frame
- */
 - (CGRect)countCurrentRectWithIndex:(NSInteger)index {
     return CGRectMake(_labelWidth * index, 0, _labelWidth, _viewHeight);
 }
 
-/**
- *  根据索引创建Label
- *
- *  @param index     创建的第几个Index
- *  @param textColor Label字体颜色
- *
- *  @return 返回创建好的label
- */
 - (UILabel *)createLabelWithTitlesIndex:(NSInteger)index textColor:(UIColor *)textColor {
     CGRect currentLabelFrame = [self countCurrentRectWithIndex:index];
     UILabel *tempLabel = [[UILabel alloc] initWithFrame:currentLabelFrame];
@@ -246,12 +233,10 @@
     return tempLabel;
 }
 
-/**
- *  创建最底层的Label
- */
 - (void)createBottomLabels {
     CGRect heightLightViewFrame = CGRectMake(0, 0, _viewWidth, _viewHeight);
-    _bottomNormalView = [[UIView alloc] initWithFrame:heightLightViewFrame];
+    UIView *bottomNormalView = [[UIView alloc] initWithFrame:heightLightViewFrame];
+    _bottomNormalView = bottomNormalView;
     _bottomNormalView.clipsToBounds = YES;
     _bottomNormalView.backgroundColor = _backgroundNormalColor;
     _bottomNormalView.layer.cornerRadius = _cornerRadius;
@@ -263,21 +248,16 @@
     [self addSubview:_bottomNormalView];
 }
 
-/**
- *  创建上一层高亮使用的Label
- */
 - (void)createTopLables {
     CGRect heightLightViewFrame = CGRectMake(0, 0, _labelWidth, _viewHeight);
-    _heightLightView = [[UIView alloc] initWithFrame:heightLightViewFrame];
+    UIView *heightLightView = [[UIView alloc] initWithFrame:heightLightViewFrame];
+    _heightLightView = heightLightView;
     _heightLightView.clipsToBounds = YES;
     _heightLightView.backgroundColor = _backgroundSelectedColor;
     _heightLightView.layer.cornerRadius = _titleCornerRadius;
     
-//    _heightColoreView = [[UIView alloc] initWithFrame:heightLightViewFrame];
-
-//    [_heightLightView addSubview:_heightColoreView];
-    
-    _heightTopView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, _viewWidth, _viewHeight)];
+    UIView *heightTopView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, _viewWidth, _viewHeight)];
+    _heightTopView = heightTopView;
     for (int i = 0; i < _titles.count; i ++) {
         UILabel *label = [self createLabelWithTitlesIndex:i textColor:_titleSelectedColor];
         [_heightTopView addSubview:label];
@@ -296,21 +276,18 @@
     }
 }
 
-/**
- *  点击按钮事件
- *
- *  @param sender 点击的相应的按钮
- */
 - (void)tapButton:(UIButton *)sender {
-    [self tapButton:sender isCode:NO];
+    [self tapButton:sender isCode:NO animated:YES];
 }
 
 /**
- *  按钮事件
- *
- *  @param sender 点击的相应的按钮
+ 点击的相应的按钮触发事件
+
+ @param sender 按钮
+ @param isCode 是否是代码触发
+ @param animated 是否动画
  */
-- (void)tapButton:(UIButton *)sender isCode:(BOOL)isCode {
+- (void)tapButton:(UIButton *)sender isCode:(BOOL)isCode animated:(BOOL)animated {
     _currentTapButton = sender;
     
     NSInteger tag = sender.tag - 100;
@@ -322,40 +299,25 @@
     CGRect frame = [self countCurrentRectWithIndex:tag];
     CGRect changeFrame = [self countCurrentRectWithIndex:-tag];
 
-    __weak typeof(self) weak_self = self;
-    if (_animationBlock) {
-        _animationBlock(^(){
-            weak_self.heightLightView.frame = frame;
-            weak_self.heightTopView.frame = changeFrame;
-        }, weak_self.duration);
+    if (animated) {
+        __weak typeof(self) weak_self = self;
+        if (_animationBlock) {
+            _animationBlock(^(){
+                weak_self.heightLightView.frame = frame;
+                weak_self.heightTopView.frame = changeFrame;
+            }, weak_self.duration);
+        } else {
+            [UIView animateWithDuration:_duration animations:^{
+                weak_self.heightLightView.frame = frame;
+                weak_self.heightTopView.frame = changeFrame;
+            } completion:^(BOOL finished) {
+                
+            }];
+        }
     } else {
-        [UIView animateWithDuration:_duration animations:^{
-            weak_self.heightLightView.frame = frame;
-            weak_self.heightTopView.frame = changeFrame;
-        } completion:^(BOOL finished) {
-            
-        }];
+        self.heightLightView.frame = frame;
+        self.heightTopView.frame = changeFrame;
     }
-}
-
-/**
- *  抖动效果
- *
- *  @param view 要抖动的view
- */
-- (void)shakeAnimationForView:(UIView *) view {
-    CALayer *viewLayer = view.layer;
-    CGPoint position = viewLayer.position;
-    CGPoint x = CGPointMake(position.x + 1, position.y);
-    CGPoint y = CGPointMake(position.x - 1, position.y);
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
-    [animation setFromValue:[NSValue valueWithCGPoint:x]];
-    [animation setToValue:[NSValue valueWithCGPoint:y]];
-    [animation setAutoreverses:YES];
-    [animation setDuration:.06];
-    [animation setRepeatCount:3];
-    [viewLayer addAnimation:animation forKey:nil];
 }
 
 @end

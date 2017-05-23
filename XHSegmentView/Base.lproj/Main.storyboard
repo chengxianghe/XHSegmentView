@@ -90,7 +90,7 @@
                                         <real key="value" value="13"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="titlesCount">
-                                        <integer key="value" value="5"/>
+                                        <integer key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -173,12 +173,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="42o-yH-bm2" customClass="XHSegmentView">
-                                <rect key="frame" x="50" y="581" width="275" height="66"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Dz-dm-X8F" customClass="XHSegmentView">
+                                <rect key="frame" x="67" y="506" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="66" id="4Bk-pW-QZw"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -190,13 +188,9 @@
                             <constraint firstItem="dfd-p6-e17" firstAttribute="top" secondItem="z7d-bL-2d1" secondAttribute="bottom" constant="40" id="94x-9u-P4I"/>
                             <constraint firstItem="jT4-AN-Jvl" firstAttribute="top" secondItem="6Se-Lp-Lrd" secondAttribute="top" id="CLI-Bp-kLS"/>
                             <constraint firstAttribute="trailing" secondItem="jT4-AN-Jvl" secondAttribute="trailing" id="DHw-LH-B10"/>
-                            <constraint firstItem="42o-yH-bm2" firstAttribute="centerX" secondItem="6Se-Lp-Lrd" secondAttribute="centerX" id="FoA-sm-UNo"/>
                             <constraint firstAttribute="trailing" secondItem="dfd-p6-e17" secondAttribute="trailing" constant="10" id="Mv6-5P-eve"/>
-                            <constraint firstAttribute="bottom" secondItem="42o-yH-bm2" secondAttribute="bottom" constant="20" id="S58-v2-H2C"/>
-                            <constraint firstItem="42o-yH-bm2" firstAttribute="leading" secondItem="6Se-Lp-Lrd" secondAttribute="leading" constant="50" id="V2r-m6-bFI"/>
                             <constraint firstItem="dfd-p6-e17" firstAttribute="leading" secondItem="6Se-Lp-Lrd" secondAttribute="leading" constant="10" id="dyz-X0-B1t"/>
                             <constraint firstItem="TNu-N9-2Pi" firstAttribute="leading" secondItem="6Se-Lp-Lrd" secondAttribute="leading" constant="20" id="gPU-87-U5j"/>
-                            <constraint firstAttribute="trailing" secondItem="42o-yH-bm2" secondAttribute="trailing" constant="50" id="uLv-cf-0As"/>
                         </constraints>
                     </view>
                     <connections>
@@ -205,7 +199,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gy2-Nh-cIV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1664.8" y="230.73463268365819"/>
+            <point key="canvasLocation" x="1665" y="188"/>
         </scene>
         <!--Code View Controller-->
         <scene sceneID="qei-7q-ZJl">
