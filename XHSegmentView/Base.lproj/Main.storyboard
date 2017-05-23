@@ -62,7 +62,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TNu-N9-2Pi" customClass="XHSegmentView">
-                                <rect key="frame" x="20" y="441" width="335" height="26"/>
+                                <rect key="frame" x="20" y="284" width="335" height="26"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="rsZ-IA-Cwt"/>
@@ -145,10 +145,12 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U2w-xH-dlm" customClass="XHSegmentView">
-                                <rect key="frame" x="59" y="172" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U2w-xH-dlm" customClass="XHSegmentView">
+                                <rect key="frame" x="80" y="164" width="215" height="80"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="6ab-C0-CwU"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="titleNormalColor">
                                         <color key="value" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -173,24 +175,32 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Dz-dm-X8F" customClass="XHSegmentView">
-                                <rect key="frame" x="67" y="506" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Dz-dm-X8F" customClass="XHSegmentView">
+                                <rect key="frame" x="60" y="350" width="255" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="EVf-rq-ekP"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="jT4-AN-Jvl" secondAttribute="bottom" id="0KH-C5-36Z"/>
+                            <constraint firstItem="U2w-xH-dlm" firstAttribute="top" secondItem="dfd-p6-e17" secondAttribute="bottom" constant="10" id="2VP-KE-ukY"/>
+                            <constraint firstItem="6Dz-dm-X8F" firstAttribute="top" secondItem="TNu-N9-2Pi" secondAttribute="bottom" constant="40" id="5VJ-4H-Teo"/>
                             <constraint firstAttribute="trailing" secondItem="TNu-N9-2Pi" secondAttribute="trailing" constant="20" id="649-yz-X9q"/>
-                            <constraint firstAttribute="bottom" secondItem="TNu-N9-2Pi" secondAttribute="bottom" constant="200" id="8Kl-mg-ErG"/>
+                            <constraint firstAttribute="trailing" secondItem="6Dz-dm-X8F" secondAttribute="trailing" constant="60" id="6JI-Ht-Rdh"/>
                             <constraint firstItem="jT4-AN-Jvl" firstAttribute="leading" secondItem="6Se-Lp-Lrd" secondAttribute="leading" id="8mB-Oy-mlz"/>
                             <constraint firstItem="dfd-p6-e17" firstAttribute="top" secondItem="z7d-bL-2d1" secondAttribute="bottom" constant="40" id="94x-9u-P4I"/>
+                            <constraint firstItem="TNu-N9-2Pi" firstAttribute="top" secondItem="U2w-xH-dlm" secondAttribute="bottom" constant="40" id="9ca-y3-KxW"/>
+                            <constraint firstItem="U2w-xH-dlm" firstAttribute="leading" secondItem="6Se-Lp-Lrd" secondAttribute="leading" constant="80" id="Bzi-1E-EWw"/>
                             <constraint firstItem="jT4-AN-Jvl" firstAttribute="top" secondItem="6Se-Lp-Lrd" secondAttribute="top" id="CLI-Bp-kLS"/>
                             <constraint firstAttribute="trailing" secondItem="jT4-AN-Jvl" secondAttribute="trailing" id="DHw-LH-B10"/>
+                            <constraint firstItem="6Dz-dm-X8F" firstAttribute="leading" secondItem="6Se-Lp-Lrd" secondAttribute="leading" constant="60" id="FS3-fl-MI2"/>
                             <constraint firstAttribute="trailing" secondItem="dfd-p6-e17" secondAttribute="trailing" constant="10" id="Mv6-5P-eve"/>
                             <constraint firstItem="dfd-p6-e17" firstAttribute="leading" secondItem="6Se-Lp-Lrd" secondAttribute="leading" constant="10" id="dyz-X0-B1t"/>
                             <constraint firstItem="TNu-N9-2Pi" firstAttribute="leading" secondItem="6Se-Lp-Lrd" secondAttribute="leading" constant="20" id="gPU-87-U5j"/>
+                            <constraint firstAttribute="trailing" secondItem="U2w-xH-dlm" secondAttribute="trailing" constant="80" id="pgg-9d-sQY"/>
                         </constraints>
                     </view>
                     <connections>
