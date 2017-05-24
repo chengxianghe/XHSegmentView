@@ -14,21 +14,21 @@ typedef void(^XHSegmentViewAnimationBlock)(void(^animation)(), CGFloat duration)
 IB_DESIGNABLE
 @interface XHSegmentView : UIView
 
-@property (nonatomic, strong) IBInspectable UIColor *titleNormalColor;        ///<标题的常规颜色
-@property (nonatomic, strong) IBInspectable UIColor *titleSelectedColor;      ///<标题高亮颜色
-@property (nonatomic, strong) IBInspectable UIColor *backgroundNormalColor;   ///<标题常规背景色
-@property (nonatomic, strong) IBInspectable UIColor *backgroundSelectedColor; ///<标题高亮背景色
-@property (nonatomic, assign) IBInspectable CGFloat titleCornerRadius;        ///<标题的CornerRadius
-@property (nonatomic, assign) IBInspectable CGFloat duration;                 ///<动画时间
-@property (nonatomic, assign) IBInspectable NSInteger titlesCount;            ///<标题数量
+@property (nonatomic, strong) IBInspectable UIColor *titleNormalColor;          ///<标题的常规颜色
+@property (nonatomic, strong) IBInspectable UIColor *titleSelectedColor;        ///<标题高亮颜色
+@property (nonatomic, strong) IBInspectable UIColor *backgroundNormalColor;     ///<标题常规背景色
+@property (nonatomic, strong) IBInspectable UIColor *backgroundSelectedColor;   ///<标题高亮背景色
+@property (nonatomic, assign) IBInspectable CGFloat titleCornerRadius;          ///<标题的圆角
+@property (nonatomic, assign) IBInspectable CGFloat duration;                   ///<动画时间
+@property (nonatomic, assign) IBInspectable NSInteger titlesCount;              ///<标题数量
 
-@property (nonatomic, assign) IBInspectable CGFloat cornerRadius;             ///<圆角
-@property (nonatomic, strong) IBInspectable UIColor *borderColor;             ///<边框颜色
-@property (nonatomic, assign) IBInspectable CGFloat borderWidth;              ///<边框宽度
-@property (nonatomic, assign) IBInspectable CGFloat titleFontSize;            ///<标题的字号
+@property (nonatomic, assign) IBInspectable CGFloat cornerRadius;               ///<圆角
+@property (nonatomic, strong) IBInspectable UIColor *borderColor;               ///<边框颜色
+@property (nonatomic, assign) IBInspectable CGFloat borderWidth;                ///<边框宽度
+@property (nonatomic, assign) IBInspectable CGFloat titleFontSize;              ///<标题的字号
 
-@property (nonatomic, strong) NSArray *titles;                  ///<标题数组
-@property (nonatomic, strong) UIFont  *titleFont;               ///<标题的字体
+@property (nonatomic, strong) NSArray *titles;                                  ///<标题数组
+@property (nonatomic, strong) UIFont  *titleFont;                               ///<标题的字体
 
 
 /**

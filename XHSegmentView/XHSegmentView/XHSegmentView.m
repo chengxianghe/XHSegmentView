@@ -10,18 +10,19 @@
 
 @interface XHSegmentView ()
 
-@property (nonatomic, assign) CGFloat viewWidth;                    //组件的宽度
-@property (nonatomic, assign) CGFloat viewHeight;                   //组件的高度
-@property (nonatomic, assign) CGFloat labelWidth;                   //Label的宽度
+@property (nonatomic, assign) CGFloat viewWidth;                    ///<组件的宽度
+@property (nonatomic, assign) CGFloat viewHeight;                   ///<组件的高度
+@property (nonatomic, assign) CGFloat labelWidth;                   ///<Label的宽度
 
 @property (nonatomic,   weak) UIView *heightLightView;
 @property (nonatomic,   weak) UIView *heightTopView;
 @property (nonatomic,   weak) UIView *bottomNormalView;
 
-@property (nonatomic, strong) NSMutableArray * labelMutableArray;
+@property (nonatomic, strong) NSMutableArray *labelMutableArray;
+@property (nonatomic,   weak) UIButton *currentTapButton;
+
 @property (nonatomic,   copy) XHSegmentViewClickBlock clickBlock;
 @property (nonatomic,   copy) XHSegmentViewAnimationBlock animationBlock;
-@property (nonatomic,   weak) UIButton * currentTapButton;
 
 @end
 
