@@ -8,6 +8,13 @@
 
 #### GitHub：[chengxianghe](https://github.com/chengxianghe) 
 
+```
+use_frameworks!
+
+pod XHSegmentView
+
+```
+
 #### 有什么问题请issue我
 
 ## Screenshots
