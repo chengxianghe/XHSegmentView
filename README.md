@@ -25,5 +25,5 @@ pod XHSegmentView
 
 ## Useage
 
-- 如果是直接Xib使用，需要注意要 先设置 "titlesCount" 属性,在设置别的属性才能实时显示
+- 如果是直接Xib使用，需要注意要 先设置 "titlesCount" 属性, 再设置别的属性才能实时显示
 - 如果是代码创建使用，需要注意最后要手动调用 "xh_layoutSubviews" 方法才能显示
