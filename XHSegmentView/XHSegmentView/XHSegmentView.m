@@ -36,6 +36,14 @@
     return self;
 }
 
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self defaultConfig];
+    }
+    return self;
+}
+
 //由于 IBInspectable 值是在 initWithCoder:之后和 awakeFromNib:之前设置的,所以可以在 initWithCoder中设置默认值:方法
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
@@ -57,6 +65,7 @@
     _titleFont = [UIFont systemFontOfSize:_titleFontSize];
     _labelMutableArray = [[NSMutableArray alloc] initWithCapacity:_titles.count];
     _labelWidth = _viewWidth / _titles.count;
+    [self xh_layoutSubviews];
 }
 
 #pragma mark - layoutSubviews
@@ -110,7 +119,7 @@
         [self createTopButtons];
     }
     
-    if (_currentTapButton != nil) {
+    if (_currentTapButton != nil && (_currentTapButton.tag - 100) != [self currentIndex]) {
         [self tapButton:_currentTapButton isCode:YES animated:NO];
     }
 }
